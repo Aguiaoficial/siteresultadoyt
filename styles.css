@@ -1,0 +1,537 @@
+/* Variáveis CSS para controle de fontes e estilos */
+:root {
+    /* TITULO */
+    --font-size-titulo: 24px;
+    --font-weight-titulo: bold;
+    --font-style-titulo: normal;
+    --font-family-titulo: sans-serif;
+    --text-shadow-titulo: none;
+    --color-titulo: #ffffff;
+    --bg-color-titulo: rgba(0, 0, 0, 0);
+
+    /* CABEÇALHO */
+    --font-size-cabecalho: 16px;
+    --font-weight-cabecalho: normal;
+    --font-style-cabecalho: normal;
+    --font-family-cabecalho: sans-serif;
+    --text-shadow-cabecalho: none;
+    --color-cabecalho: #ffffff;
+    --bg-color-cabecalho: rgba(85, 85, 85, 1);
+
+    /* TABELA (DADOS) */
+    --font-size-tabela: 16px;
+    --font-weight-tabela: normal;
+    --font-style-tabela: normal;
+    --font-family-tabela: sans-serif;
+    --text-shadow-tabela: none;
+    --table-border-style: 1px solid #ffffff;
+    
+    /* Variáveis de cor para cada coluna */
+    --bg-color-col-icone: rgba(0, 0, 0, 0);
+    /* ATUALIZAÇÃO INÍCIO */
+    --col-icone-text-color: #ffffff;
+    --col-icone-font-size: 16px;
+    --col-icone-font-family: sans-serif;
+    --col-icone-font-weight: bold;
+    --col-icone-font-style: normal;
+    --col-icone-text-shadow: none;
+    /* ATUALIZAÇÃO FIM */
+    --color-col-premio: #ffffff;
+    --bg-color-col-premio: rgba(0, 0, 0, 0);
+    --color-col-milhar: #ffffff;
+    --bg-color-col-milhar: rgba(0, 0, 0, 0);
+    --color-col-grupo: #ffffff;
+    --bg-color-col-grupo: rgba(0, 0, 0, 0);
+}
+
+body {
+    background-color: #808080;
+    color: #ffffff;
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body.fullscreen-mode header,
+body.fullscreen-mode footer {
+    display: none;
+}
+
+body.fullscreen-mode {
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+body.fullscreen-mode #fixed-viewport-wrapper {
+    flex-grow: 1;
+    height: 100%; 
+    width: 100%;
+    margin-top: 0; /* <<< ADICIONADO: Remove a margem no modo tela cheia */
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+header {
+    background-color: #333333;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 15px; 
+    min-height: 40px;
+    /* --- ALTERAÇÕES AQUI --- */
+    position: fixed;      /* Fixa o cabeçalho na tela */
+    top: 0;               /* Alinha no topo */
+    left: 0;              /* Alinha à esquerda */
+    width: 100%;          /* Faz ocupar a largura toda */
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+    z-index: 1100;        /* Garante que fique acima de outros conteúdos */
+}
+
+.header-left-buttons {
+    display: flex;
+    gap: 10px;
+    margin-right: auto;
+}
+
+.header-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    margin-right: 60px;
+}
+
+.hamburger-menu {
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    z-index: 1001; 
+    cursor: pointer;
+    padding: 10px;
+}
+
+.settings-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #555;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.table-markers {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+}
+
+.marker-radio {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.marker-radio input[type="radio"] {
+    margin: 0;
+}
+
+#fixed-viewport-wrapper {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 55px; /* <<< ADICIONADO: Empurra o conteúdo para baixo do cabeçalho */
+}
+
+.container { 
+    width: 1280px;
+    height: 720px;
+    padding: 20px;
+    box-sizing: border-box; 
+    background-color: #555;
+    transform-origin: center center; 
+    display: flex; 
+    flex-shrink: 0;
+}
+
+.area { 
+    width: 50%; 
+    padding: 0 10px;
+    box-sizing: border-box; 
+    height: 100%;
+}
+
+.titulo-editavel {
+    font-size: var(--font-size-titulo);
+    font-weight: var(--font-weight-titulo);
+    font-style: var(--font-style-titulo);
+    font-family: var(--font-family-titulo), sans-serif;
+    border: none;
+    color: var(--color-titulo);
+    background-color: var(--bg-color-titulo);
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    text-shadow: var(--text-shadow-titulo);
+}
+
+.titulo-editavel:focus { outline: 1px solid #ffffff; }
+
+table { width: 100%; border-collapse: collapse; }
+
+th, td { 
+    border: var(--table-border-style); 
+    padding: 8px; 
+    text-align: center; 
+    font-size: var(--font-size-tabela); 
+    font-weight: var(--font-weight-tabela);
+    font-style: var(--font-style-tabela);
+    font-family: var(--font-family-tabela), sans-serif;
+    text-shadow: var(--text-shadow-tabela);
+}
+
+th { 
+    background-color: var(--bg-color-cabecalho);
+    color: var(--color-cabecalho);
+    font-size: var(--font-size-cabecalho);
+    font-weight: var(--font-weight-cabecalho);
+    font-style: var(--font-style-cabecalho);
+    font-family: var(--font-family-cabecalho), sans-serif;
+    text-shadow: var(--text-shadow-cabecalho);
+}
+
+.col-icone { width: 10%; }
+.col-premio { width: 10%; }
+.col-milhar { width: 25%; }
+.col-grupo { width: 55%; }
+
+/* CORREÇÃO: As cores de fundo das colunas agora aplicam-se APENAS às células de dados (td) */
+td.col-icone { 
+    background-color: var(--bg-color-col-icone);
+    padding: 0; /* ALTERAÇÃO: Remove o espaçamento interno para o círculo crescer */
+}
+td.col-premio { background-color: var(--bg-color-col-premio); }
+td.col-milhar { background-color: var(--bg-color-col-milhar); }
+td.col-grupo { background-color: var(--bg-color-col-grupo); }
+
+/* As cores do texto continuam aplicadas às células de dados */
+td.col-premio { color: var(--color-col-premio); }
+td.col-milhar .milhar-input { color: var(--color-col-milhar) !important; }
+td.col-grupo { color: var(--color-col-grupo); }
+
+.milhar-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: var(--font-size-tabela); 
+    font-weight: var(--font-weight-tabela); 
+    font-style: var(--font-style-tabela); 
+    font-family: var(--font-family-tabela), sans-serif;
+    text-shadow: var(--text-shadow-tabela);
+    text-align: center;
+    direction: ltr;
+}
+
+.milhar-input:focus { outline: none; }
+.milhar-input[readonly] { background-color: #444; color: #aaa; }
+
+#tabela-esquerda tr:nth-child(n+6) .milhar-input[readonly],
+#tabela-direita tr:nth-child(n+6) .milhar-input[readonly] {
+    background-color: transparent !important;
+    color: var(--color-col-milhar) !important;
+}
+
+.soma-mult-text {
+    font-size: calc(var(--font-size-tabela) / 2);
+    font-weight: normal;
+    font-style: italic;
+}
+
+button {
+    background-color: #555555;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover { background-color: #777777; }
+footer { background-color: #333333; padding: 10px; text-align: center; margin-top: auto; }
+label { cursor: pointer; display: flex; align-items: center; gap: 4px; }
+
+.icone-grupo {
+    display: flex; /* ALTERAÇÃO: Para centralizar conteúdo */
+    align-items: center; /* ADIÇÃO: Centraliza verticalmente */
+    justify-content: center; /* ADIÇÃO: Centraliza horizontalmente */
+    height: 100%; /* ALTERAÇÃO: Ocupa toda a altura da célula */
+    aspect-ratio: 1 / 1; /* ADIÇÃO: Garante que seja um quadrado (e, portanto, um círculo perfeito) */
+    margin: 0 auto;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    /* ATUALIZAÇÃO INÍCIO */
+    color: var(--col-icone-text-color);
+    font-size: var(--col-icone-font-size);
+    font-family: var(--col-icone-font-family), sans-serif;
+    font-weight: var(--col-icone-font-weight);
+    font-style: var(--col-icone-font-style);
+    text-shadow: var(--col-icone-text-shadow);
+    /* ATUALIZAÇÃO FIM */
+}
+
+.hamburger-menu.open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger-menu.open .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-menu.open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #ffffff;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0; 
+    position: fixed;
+    z-index: 1000; 
+    top: 0;
+    right: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+}
+
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid #555;
+    white-space: nowrap;
+}
+
+.sidebar a:hover {
+    background-color: #555;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7); 
+}
+
+.modal-content {
+    background-color: #333;
+    margin: 5% auto; 
+    padding: 0;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 900px;
+    height: 80%;
+    max-height: 600px;
+    color: #fff;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #555;
+    background-color: #444;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.modal-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.config-menu {
+    width: 200px;
+    background-color: #222;
+    padding: 20px 0;
+    border-right: 1px solid #555;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.config-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.config-menu li a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid #555;
+    white-space: nowrap;
+}
+
+.config-menu li a:hover,
+.config-menu li.active a {
+    background-color: #555;
+}
+
+.config-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.config-pane {
+    display: none;
+}
+
+.config-pane.active {
+    display: block;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.config-group {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+}
+
+.config-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.config-group h4 {
+    margin-top: 0;
+    color: #ddd;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.config-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 2px 0;
+    gap: 10px;
+}
+
+.config-item label {
+    white-space: nowrap;
+}
+
+.config-item input[type="number"], .config-item select {
+    flex-grow: 1;
+    max-width: 120px;
+}
+
+.config-item input[type="color"] {
+    min-width: 40px;
+    height: 30px;
+    padding: 2px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.config-item input[type="range"] {
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.config-item > div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.config-item input[type="number"], .config-item select {
+    width: 120px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #fff;
+}
+
+/* --- ADIÇÃO: Animação de Pulso --- */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse-effect {
+    animation: pulse 0.5s ease-in-out;
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="#" id="open-config-btn"><span style="margin-right: 5px;">⚙️</span> Configurações</a>
+    </div>
+
+    <header>
+        <div class="header-left-buttons">
+            <button id="novo">Novo</button>
+            <button id="modo-tela-btn">Modo Tela</button> 
+        </div>
+        
+        <div class="header-options">
+            <div class="settings-group">
+                <span>Aplicar a:</span>
+                <div class="table-markers">
+                    <div class="marker-radio">
+                        <input type="radio" id="marker-e" name="table-target" value="E" checked>
+                        <label for="marker-e">E</label>
+                    </div>
+                    <div class="marker-radio">
+                        <input type="radio" id="marker-d" name="table-target" value="D">
+                        <label for="marker-d">D</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <span>Resultados:</span>
+                <label><input type="radio" name="num-linhas" value="5"> 1º ao 5º</label>
+                <label><input type="radio" name="num-linhas" value="10" checked> 1º ao 10º</label>
+            </div>
+
+            <div class="settings-group">
+                <label><input type="checkbox" id="inverter-numeros"> Inverter Digitação</label>
+            </div>
+            
+            <div class="settings-group" id="grupo-sexto-setimo">
+                <label><input type="checkbox" id="sexto-setimo"> 6º e 7º</label>
+                <label id="label-automatico" style="display:none;">
+                    <input type="checkbox" id="automatico"> Automático
+                </label>
+            </div>
+        </div>
+
+        <div class="hamburger-menu" id="hamburger-btn">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+    
+    <div id="fixed-viewport-wrapper">
+        <div class="container">
+            <div class="area" id="area-esquerda">
+                <input type="text" class="titulo-editavel" id="titulo-esquerda" placeholder="Digite o título aqui">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-icone"></th> 
+                            <th class="col-premio">Prêmio</th>
+                            <th class="col-milhar">Milhar</th>
+                            <th class="col-grupo">Grupo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-esquerda"></tbody>
+                </table>
+            </div>
+            <div class="area" id="area-direita">
+                <input type="text" class="titulo-editavel" id="titulo-direita" placeholder="Digite o título aqui">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-icone"></th> 
+                            <th class="col-premio">Prêmio</th>
+                            <th class="col-milhar">Milhar</th>
+                            <th class="col-grupo">Grupo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-direita"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Página de Sorteio</p>
+    </footer>
+
+    <div id="config-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" id="close-modal-btn">&times;</span>
+            <div class="modal-header">
+                <h2>Configurações</h2>
+            </div>
+            <div class="modal-body">
+                <div class="config-menu">
+                    <ul>
+                        <li class="active"><a href="#" data-target="layout-settings">Configurações de Layout</a></li>
+                    </ul>
+                </div>
+                <div class="config-content">
+                    <div id="layout-settings" class="config-pane active">
+                        <h3>Configurações de Layout</h3>
+                        <div id="config-settings-container">
+                            
+                            <div class="config-group">
+                                <h4>Geral da Tabela</h4>
+                                <div class="config-item">
+                                    <label><input type="checkbox" id="tabela-show-lines"> Exibir Linhas da Tabela</label>
+                                </div>
+                            </div>
+
+                            <div class="config-group">
+                                <h4>Título</h4>
+                                <div class="config-item"><label for="titulo-font-size">Tamanho (px):</label><input type="number" id="titulo-font-size" min="16" max="64"></div>
+                                <div class="config-item"><label for="titulo-font-family">Fonte:</label><select id="titulo-font-family"></select></div>
+                                <div class="config-item"><label for="titulo-text-color">Cor do Texto:</label><input type="color" id="titulo-text-color" value="#ffffff"></div>
+                                <div class="config-item"><label for="titulo-bg-color">Cor do Fundo:</label><input type="color" id="titulo-bg-color" value="#333333"></div>
+                                <div class="config-item"><label for="titulo-bg-alpha">Transparência Fundo:</label><input type="range" id="titulo-bg-alpha" min="0" max="1" step="0.01" value="0"></div>
+                                <div class="config-item"><span>Estilo:</span><div><label><input type="checkbox" id="titulo-is-bold"> Bold</label><label><input type="checkbox" id="titulo-is-italic"> Italic</label></div></div>
+                                <div class="config-item"><label><input type="checkbox" id="titulo-has-shadow"> Sombra</label></div>
+                            </div>
+
+                            <div class="config-group">
+                                <h4>Cabeçalho (Prêmio, Milhar, Grupo)</h4>
+                                <div class="config-item"><label for="cabecalho-font-size">Tamanho (px):</label><input type="number" id="cabecalho-font-size" min="10" max="48"></div>
+                                <div class="config-item"><label for="cabecalho-font-family">Fonte:</label><select id="cabecalho-font-family"></select></div>
+                                <div class="config-item"><label for="cabecalho-text-color">Cor do Texto:</label><input type="color" id="cabecalho-text-color" value="#ffffff"></div>
+                                <div class="config-item"><label for="cabecalho-bg-color">Cor do Fundo:</label><input type="color" id="cabecalho-bg-color" value="#555555"></div>
+                                <div class="config-item"><label for="cabecalho-bg-alpha">Transparência Fundo:</label><input type="range" id="cabecalho-bg-alpha" min="0" max="1" step="0.01" value="0"></div>
+                                <div class="config-item"><span>Estilo:</span><div><label><input type="checkbox" id="cabecalho-is-bold"> Bold</label><label><input type="checkbox" id="cabecalho-is-italic"> Italic</label></div></div>
+                                <div class="config-item"><label><input type="checkbox" id="cabecalho-has-shadow"> Sombra</label></div>
+                            </div>
+                            
+                            <div class="config-group">
+                                <h4>Fonte Geral das Colunas</h4>
+                                <div class="config-item"><label for="tabela-font-size">Tamanho Fonte (px):</label><input type="number" id="tabela-font-size" min="10" max="48"></div>
+                                <div class="config-item"><label for="tabela-font-family">Fonte:</label><select id="tabela-font-family"></select></div>
+                                <div class="config-item"><span>Estilo Fonte:</span><div><label><input type="checkbox" id="tabela-is-bold"> Bold</label><label><input type="checkbox" id="tabela-is-italic"> Italic</label></div></div>
+                                <div class="config-item"><label><input type="checkbox" id="tabela-has-shadow"> Sombra na Fonte</label></div>
+                            </div>
+                            
+                            <div class="config-group">
+                                <h4>Coluna: Ícone</h4>
+                                <div class="config-item"><label for="col-icone-font-size">Tamanho (px):</label><input type="number" id="col-icone-font-size" min="10" max="48"></div>
+                                <div class="config-item"><label for="col-icone-font-family">Fonte:</label><select id="col-icone-font-family"></select></div>
+                                <div class="config-item"><label for="col-icone-text-color">Cor do Texto:</label><input type="color" id="col-icone-text-color" value="#ffffff"></div>
+                                <div class="config-item"><span>Estilo:</span><div><label><input type="checkbox" id="col-icone-is-bold"> Bold</label><label><input type="checkbox" id="col-icone-is-italic"> Italic</label></div></div>
+                                <div class="config-item"><label><input type="checkbox" id="col-icone-has-shadow"> Sombra</label></div>
+                                <div class="config-item"><label for="col-icone-bg-color">Cor do Fundo:</label><input type="color" id="col-icone-bg-color" value="#333333"></div>
+                                <div class="config-item"><label for="col-icone-bg-alpha">Transparência Fundo:</label><input type="range" id="col-icone-bg-alpha" min="0" max="1" step="0.01" value="0"></div>
+                            </div>
+                            <div class="config-group">
+                                <h4>Coluna: Prêmio</h4>
+                                <div class="config-item"><label for="col-premio-text-color">Cor do Texto:</label><input type="color" id="col-premio-text-color" value="#ffffff"></div>
+                                <div class="config-item"><label for="col-premio-bg-color">Cor do Fundo:</label><input type="color" id="col-premio-bg-color" value="#333333"></div>
+                                <div class="config-item"><label for="col-premio-bg-alpha">Transparência Fundo:</label><input type="range" id="col-premio-bg-alpha" min="0" max="1" step="0.01" value="0"></div>
+                            </div>
+                            
+                            <div class="config-group">
+                                <h4>Coluna: Milhar</h4>
+                                <div class="config-item"><label for="col-milhar-text-color">Cor do Texto:</label><input type="color" id="col-milhar-text-color" value="#ffffff"></div>
+                                <div class="config-item"><label for="col-milhar-bg-color">Cor do Fundo:</label><input type="color" id="col-milhar-bg-color" value="#333333"></div>
+                                <div class="config-item"><label for="col-milhar-bg-alpha">Transparência Fundo:</label><input type="range" id="col-milhar-bg-alpha" min="0" max="1" step="0.01" value="0"></div>
+                            </div>
+
+                            <div class="config-group">
+                                <h4>Coluna: Grupo</h4>
+                                <div class="config-item"><label for="col-grupo-text-color">Cor do Texto:</label><input type="color" id="col-grupo-text-color" value="#ffffff"></div>
+                                <div class="config-item"><label for="col-grupo-bg-color">Cor do Fundo:</label><input type="color" id="col-grupo-bg-color" value="#333333"></div>
+                                <div class="config-item"><label for="col-grupo-bg-alpha">Transparência Fundo:</label><input type="range" id="col-grupo-bg-alpha" min="0" max="1" step="0.01" value="0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
